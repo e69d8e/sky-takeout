@@ -15,7 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>takeout</name>
-    <description>Sky Take Out Parent Project</description>
+    <description>Sky Takeout Parent Project</description>
 
     <modules>
         <module>takeout-common</module>

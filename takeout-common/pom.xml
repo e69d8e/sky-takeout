@@ -12,7 +12,7 @@
     <artifactId>takeout-common</artifactId>
     <packaging>jar</packaging>
     <name>takeout-common</name>
-    <description>Take Out Common Infrastructure Module</description>
+    <description>Takeout Common Infrastructure Module</description>
 
     <dependencies>
         <dependency>

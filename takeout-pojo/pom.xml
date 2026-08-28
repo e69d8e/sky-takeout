@@ -12,7 +12,7 @@
     <artifactId>takeout-pojo</artifactId>
     <packaging>jar</packaging>
     <name>takeout-pojo</name>
-    <description>Take Out Data Transfer &amp; Entity Objects</description>
+    <description>Takeout Data Transfer &amp; Entity Objects</description>
 
     <dependencies>
         <dependency>

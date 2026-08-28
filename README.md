@@ -1,4 +1,4 @@
-# 苍穹外卖系统 (Sky Take Out)
+# 苍穹外卖系统 (Sky Takeout)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Spring%20Boot-3.3.5-brightgreen.svg" alt="Spring Boot">
@@ -166,7 +166,7 @@ flowchart TB
 ## 📁 项目工程结构
 
 ```
-take-out/
+sky-takeout/
 ├── README.md                              # 项目说明文档
 ├── pom.xml                                # Maven 根工程 Parent POM (依赖与版本聚合管控)
 ├── .env.example                           # 环境变量配置示例模板
@@ -232,8 +232,8 @@ take-out/
 ### 1. 克隆代码仓库
 
 ```bash
-git clone <repository-url>
-cd take-out
+git clone https://github.com/e69d8e/sky-takeout.git
+cd sky-takeout
 ```
 
 ### 2. 初始化数据库
