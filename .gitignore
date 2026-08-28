@@ -1,0 +1,46 @@
+# ===============================
+# IntelliJ IDEA
+# ===============================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ===============================
+# Eclipse
+# ===============================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ===============================
+# VS Code
+# ===============================
+.vscode/
+
+# ===============================
+# Build & Compiled files
+# ===============================
+target/
+**/target/
+build/
+dist/
+
+# ===============================
+# Environment & Sensitive files
+# ===============================
+.env
+*.env
+application-dev.yml
+**/application-dev.yml
+
+# ===============================
+# OS & Logs
+# ===============================
+.DS_Store
+*.log
