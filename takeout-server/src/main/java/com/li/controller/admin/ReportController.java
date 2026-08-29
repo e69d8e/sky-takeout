@@ -41,8 +41,8 @@ public class ReportController {
     ) {
         return Result.success(reportService.userStatistics(begin, end));
     }
-    // 查询销量top100
-    @GetMapping("/top100")
+    // 查询销量top10
+    @GetMapping("/top10")
     public Result<SalesTop10ReportVO> top10(
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end

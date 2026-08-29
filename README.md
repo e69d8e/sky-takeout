@@ -280,14 +280,28 @@ java -jar takeout-server/target/takeout-server-0.0.1-SNAPSHOT.jar
 mvn -pl takeout-server spring-boot:run
 ```
 
-### 5. 前端部署与 Nginx 代理配置 (可选)
+### 5. 前端部署与 Nginx 代理配置
 
-项目中已内置打包完成的管理端静态页面与 Nginx 配置文件，路径为 [`takeout-server/src/main/resources/nginx`](takeout-server/src/main/resources/nginx)：
-- 将 `nginx/html/sky` 复制到 Nginx 的静态资源目录；
-- 参考 `nginx/conf/nginx.conf` 配置管理端反向代理（`/api/` 转发至后端 `/admin/`，`/ws/` 开启 WebSocket 代理）。
+项目中已内置打包完成的管理端静态页面与 Nginx 配置文件，路径为 [`takeout-server/src/main/resources/nginx`](takeout-server/src/main/resources/nginx)。
+
+#### 方式一：使用 Docker 容器化运行（推荐）
+
+```bash
+docker run -d \
+  --name sky-take-out-nginx \
+  -p 80:80 \
+  -v $(pwd)/takeout-server/src/main/resources/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro \
+  -v $(pwd)/takeout-server/src/main/resources/nginx/html:/usr/share/nginx/html:ro \
+  nginx:stable-alpine
+```
+
+#### 方式二：本地安装 Nginx 运行
+- 将 `takeout-server/src/main/resources/nginx/html/sky` 复制到 Nginx 静态资源目录；
+- 参考 `takeout-server/src/main/resources/nginx/conf/nginx.conf` 配置反向代理（`/api/` 转发至后端 `/admin/`，`/user/` 转发至 `/user/`，`/ws/` 开启 WebSocket 代理）。
 
 ### 6. 服务验证与访问入口
 
+- **管理端 Web 页面**: [http://localhost:80](http://localhost:80)
 - **交互式 API 文档 (Knife4j)**: [http://localhost:8080/doc.html](http://localhost:8080/doc.html)
 - **管理端接口根路径**: `http://localhost:8080/admin/`
 - **用户端接口根路径**: `http://localhost:8080/user/`
@@ -331,7 +345,7 @@ mvn -pl takeout-server spring-boot:run
 - `POST /admin/employee` - 新增员工账号
 - `GET /admin/employee/page` - 分页检索员工列表
 - `GET /admin/employee/{id}` - 根据 ID 获取员工详情
-- `PUT /admin/employee/status/{status}` - 启用/禁用员工账号
+- `POST /admin/employee/status/{status}` - 启用/禁用员工账号
 - `PUT /admin/employee/password` - 修改员工密码
 - `PUT /admin/employee` - 编辑员工基本信息
 
@@ -374,7 +388,7 @@ mvn -pl takeout-server spring-boot:run
 - `GET /admin/report/turnoverStatistics` - 指定区间营业额统计
 - `GET /admin/report/userStatistics` - 指定区间用户总量与新增用户统计
 - `GET /admin/report/ordersStatistics` - 指定区间订单总量与有效订单统计
-- `GET /admin/report/top100` - 指定区间销量排行榜 TOP10 / TOP100
+- `GET /admin/report/top10` - 指定区间销量排行榜 TOP10
 - `GET /admin/workspace/businessData` - 今日核心运营数据概览
 - `GET /admin/workspace/overviewSetmeals` - 套餐总览数据
 - `GET /admin/workspace/overviewDishes` - 菜品总览数据
@@ -382,7 +396,7 @@ mvn -pl takeout-server spring-boot:run
 
 #### ⚙️ 店铺与通用 (`/admin/shop` & `/admin/common`)
 - `PUT /admin/shop/{status}` - 设置店铺营业状态（1:营业中, 0:打烊）
-- `GET /admin/shop` - 获取当前店铺营业状态
+- `GET /admin/shop/status` - 获取当前店铺营业状态
 - `POST /admin/common/upload` - 上传图片文件至阿里云 OSS
 
 ---

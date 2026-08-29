@@ -109,15 +109,15 @@ public class ReportServiceImpl implements ReportService {
 
         List<Top100> top100s = reportMapper.top100(Orders.COMPLETED, LocalDateTime.of(begin, LocalTime.MIN),
                 LocalDateTime.of(end, LocalTime.MAX));
-        if (top100s == null) return new SalesTop10ReportVO();
-        String nameListStr = "";
-        String numberListStr = "";
-        // 拼接成字符串
-        for (Top100 top100 : top100s) {
-            nameListStr += top100.getName() + ",";
-            numberListStr += top100.getNumber() + ",";
+        if (top100s == null || top100s.isEmpty()) {
+            return new SalesTop10ReportVO("", "");
         }
-        return new SalesTop10ReportVO(nameListStr.substring(0, nameListStr.length() - 1),
-                numberListStr.substring(0, numberListStr.length() - 1));
+        List<String> nameList = new ArrayList<>();
+        List<String> numberList = new ArrayList<>();
+        for (Top100 top100 : top100s) {
+            nameList.add(top100.getName());
+            numberList.add(String.valueOf(top100.getNumber()));
+        }
+        return new SalesTop10ReportVO(String.join(",", nameList), String.join(",", numberList));
     }
 }

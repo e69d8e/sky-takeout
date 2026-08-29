@@ -95,7 +95,7 @@ public class EmployeeController {
     /*
     修改员工状态
      */
-    @PutMapping("/status/{status}")
+    @PostMapping("/status/{status}")
     public Result updateForStatus(@PathVariable Integer status, @RequestParam Long id){
         employeeService.updateForStatus(status, id);
         return Result.success();
